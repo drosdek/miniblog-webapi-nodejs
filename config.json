@@ -1,0 +1,4 @@
+{
+  "connectionString": "mongodb+srv://drosdek:drosdek703@miniblog.u4yyuo5.mongodb.net/?retryWrites=true&w=majority",
+  "secret": ""
+}
