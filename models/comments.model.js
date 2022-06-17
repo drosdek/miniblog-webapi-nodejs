@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const commentSchema = new Schema({
+const CommentSchema = new Schema({
   text: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 
-// Define o parâmetro createdAt igual à hora atual
-commentSchema.pre("save", (next) => {
+// Sets the createdAt parameter equal to the current time
+CommentSchema.pre("save", (next) => {
   now = new Date();
   if (!this.createdAt) {
     this.createdAt = now;
@@ -15,7 +15,7 @@ commentSchema.pre("save", (next) => {
   next();
 });
 
-commentSchema.set("toJSON", {
+CommentSchema.set("toJSON", {
   virtuals: true,
   versionKey: false,
   transform: function (doc, ret) {
@@ -23,4 +23,4 @@ commentSchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model("Author", commentSchema);
+module.exports = mongoose.model("comment", CommentSchema);

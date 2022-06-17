@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const authorSchema = new Schema({
+const AuthorSchema = new Schema({
   username: { type: String, unique: true, required: true },
   hash: { type: String, required: true },
   firstName: { type: String, required: true },
@@ -11,8 +11,8 @@ const authorSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-// Define o parâmetro createdAt igual à hora atual
-authorSchema.pre("save", (next) => {
+// Sets the createdAt parameter equal to the current time
+AuthorSchema.pre("save", (next) => {
   now = new Date();
   if (!this.createdAt) {
     this.createdAt = now;
@@ -20,7 +20,7 @@ authorSchema.pre("save", (next) => {
   next();
 });
 
-authorSchema.set("toJSON", {
+AuthorSchema.set("toJSON", {
   virtuals: true,
   versionKey: false,
   transform: function (doc, ret) {
@@ -29,4 +29,4 @@ authorSchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model("Author", authorSchema);
+module.exports = mongoose.model("author", AuthorSchema);

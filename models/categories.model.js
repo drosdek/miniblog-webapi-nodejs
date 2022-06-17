@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const categorySchema = new Schema({
+const CategorySchema = new Schema({
   category: { type: String, unique: true, required: true },
   type: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 
-// Define o parâmetro createdAt igual à hora atual
-categorySchema.pre("save", (next) => {
+// Sets the createdAt parameter equal to the current time
+CategorySchema.pre("save", (next) => {
   now = new Date();
   if (!this.createdAt) {
     this.createdAt = now;
@@ -16,7 +16,7 @@ categorySchema.pre("save", (next) => {
   next();
 });
 
-categorySchema.set("toJSON", {
+CategorySchema.set("toJSON", {
   virtuals: true,
   versionKey: false,
   transform: function (doc, ret) {
@@ -24,4 +24,4 @@ categorySchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model("Author", categorySchema);
+module.exports = mongoose.model("category", CategorySchema);
