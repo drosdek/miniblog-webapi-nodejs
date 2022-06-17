@@ -1,13 +1,11 @@
-var createError = require("http-errors");
 var express = require("express");
-var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var errorHandler = require("./middleware/error_handle");
 var config = require("config");
 
 var indexRouter = require("./routes/index");
-var authorsRouter = require("./routes/authors");
-const errorHandler = require("./_helpers/error_handle");
+var authorsRouter = require("./routes/authors.route");
 
 var app = express();
 
