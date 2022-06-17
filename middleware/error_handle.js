@@ -18,7 +18,9 @@ function errorHandler(err, req, res, next) {
 
   if (err.name === "NotFoundError") {
     // 404 not found
-    return res.status(404).json({ message: "Request " + req.url + " " + err.message });
+    return res
+      .status(404)
+      .json({ message: "Request " + req.url + " " + err.message });
   }
 
   // default to 500 server error
