@@ -4,5 +4,7 @@ var authors = require("../controllers/authors.controller");
 
 /* GET authors listing. */
 router.get("/", authors.getAll);
+/* POST author */
+router.post("/", authors.create);
 
 module.exports = router;
