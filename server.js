@@ -12,8 +12,11 @@ var app = express();
 if (config.util.getEnv("NODE_ENV") !== "test") {
   app.use(logger("combined")); //'dev' outputs the Apache style LOGs
 }
+
+//parse application/json and look for raw text
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json({ type: "application/json" }));
 app.use(cookieParser());
 
 app.use("/", indexRouter);
