@@ -26,7 +26,7 @@ describe("Authors", () => {
     it("it should GET all the authors", (done) => {
       chai
         .request(server)
-        .get("/author")
+        .get("/authors")
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a("array");
