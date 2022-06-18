@@ -8,5 +8,7 @@ router.get("/", authors.getAll);
 router.post("/", authors.create);
 /* GET ID author */
 router.get("/:id", authors.getById);
+/* PUT ID author */
+router.put("/:id", authors.update)
 
 module.exports = router;

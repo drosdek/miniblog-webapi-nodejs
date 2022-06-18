@@ -164,4 +164,34 @@ describe("Authors", () => {
       });
     });
   });
+  describe("/PUT/:id author", () => {
+    it("it should UPDATE a author given the id", (done) => {
+      let author = new Author({
+        firstName: "Author",
+        lastName: "Leonard",
+        age: 30,
+        email: "teste@teste.com",
+      });
+      author.save((err, author) => {
+        chai
+          .request(server)
+          .put("/authors/" + author.id)
+          .send({
+            firstName: "Author",
+            lastName: "Da Vinci",
+            age: 30,
+            email: "teste@teste.com",
+          })
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a("object");
+            res.body.should.have.property("firstName");
+            res.body.should.have.property("lastName");
+            res.body.should.have.property("age");
+            res.body.should.have.property("email");
+            done();
+          });
+      });
+    });
+  });
 });

@@ -18,8 +18,14 @@ function create(req, res, next) {
 }
 
 function getById(req, res, next) {
-  AuthorRepository.getById(req.params.id)
+  AuthorRepository.getById(req.params.id, res.body)
     .then((author) => (author ? res.json(author) : send.status(404)))
+    .catch((err) => next(err));
+}
+
+function update(req, res, next) {
+  AuthorRepository.update(req.params.id, req.body)
+    .then((author) => res.json(author))
     .catch((err) => next(err));
 }
 
@@ -27,4 +33,5 @@ module.exports = {
   getAll,
   create,
   getById,
+  update,
 };
