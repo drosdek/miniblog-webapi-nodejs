@@ -17,7 +17,14 @@ function create(req, res, next) {
     .catch((err) => next(err));
 }
 
+function getById(req, res, next) {
+  AuthorRepository.getById(req.params.id)
+    .then((author) => (author ? res.json(author) : send.status(404)))
+    .catch((err) => next(err));
+}
+
 module.exports = {
   getAll,
   create,
+  getById,
 };

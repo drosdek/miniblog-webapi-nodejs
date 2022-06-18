@@ -138,4 +138,30 @@ describe("Authors", () => {
         });
     });
   });
+  describe("/GET/:id author", () => {
+    it("it should GET ID a author by the given id", (done) => {
+      let author = new Author({
+        firstName: "Author",
+        lastName: "Leonard",
+        age: 30,
+        email: "teste@teste.com",
+      });
+      author.save((err, author) => {
+        chai
+          .request(server)
+          .get("/authors/" + author.id)
+          .send(author)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a("object");
+            res.body.should.have.property("firstName");
+            res.body.should.have.property("lastName");
+            res.body.should.have.property("age");
+            res.body.should.have.property("email");
+            res.body.should.have.property("id").eql(author.id);
+            done();
+          });
+      });
+    });
+  });
 });

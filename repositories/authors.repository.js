@@ -15,7 +15,12 @@ async function create(authorParam) {
   return author;
 }
 
+async function getById(id) {
+  return await Author.findById(id);
+}
+
 module.exports = {
   getAll,
   create,
+  getById,
 };
