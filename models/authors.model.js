@@ -2,11 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const AuthorSchema = new Schema({
-  username: { type: String, unique: true, required: true },
-  hash: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  age: { type: String, required: true },
+  age: { type: Number, required: true },
   email: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });
@@ -25,7 +23,6 @@ AuthorSchema.set("toJSON", {
   versionKey: false,
   transform: function (doc, ret) {
     delete ret._id;
-    delete ret.hash;
   },
 });
 
