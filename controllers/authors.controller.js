@@ -19,7 +19,7 @@ function create(req, res, next) {
 
 function getById(req, res, next) {
   AuthorRepository.getById(req.params.id, res.body)
-    .then((author) => (author ? res.json(author) : send.status(404)))
+    .then((author) => (author ? res.json(author) : res.status(404)))
     .catch((err) => next(err));
 }
 
@@ -29,9 +29,16 @@ function update(req, res, next) {
     .catch((err) => next(err));
 }
 
+function remove(req, res, next) {
+  AuthorRepository.remove(req.params.id)
+    .then(() => res.sendStatus(204))
+    .catch((err) => next(err));
+}
+
 module.exports = {
   getAll,
   create,
   getById,
   update,
+  remove,
 };

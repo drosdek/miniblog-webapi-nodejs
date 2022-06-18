@@ -25,7 +25,6 @@ async function update(id, authorParam) {
   // check if found author
   if (!author) throw "Author não encontrado!";
 
-
   // copy authorParam property to author
   Object.assign(author, authorParam);
 
@@ -34,9 +33,19 @@ async function update(id, authorParam) {
   return author;
 }
 
+async function remove(id) {
+  let uid = await Author.findById(id);
+
+  //check if it has author with the id to remove
+  if (!uid) throw "Author não encontrado!";
+
+  await Author.findByIdAndRemove(id);
+}
+
 module.exports = {
   getAll,
   create,
   getById,
   update,
+  remove,
 };

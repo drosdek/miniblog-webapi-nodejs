@@ -35,6 +35,9 @@ describe("Authors", () => {
         });
     });
   });
+  /*
+   * Test the /POST/:id route
+   */
   describe("/POST author", () => {
     it('it should not POST a author without "firstName" field', (done) => {
       let author = {
@@ -138,6 +141,9 @@ describe("Authors", () => {
         });
     });
   });
+  /*
+   * Test the /GET/:id route
+   */
   describe("/GET/:id author", () => {
     it("it should GET ID a author by the given id", (done) => {
       let author = new Author({
@@ -164,6 +170,9 @@ describe("Authors", () => {
       });
     });
   });
+  /*
+   * Test the /PUT/:id route
+   */
   describe("/PUT/:id author", () => {
     it("it should UPDATE a author given the id", (done) => {
       let author = new Author({
@@ -189,6 +198,28 @@ describe("Authors", () => {
             res.body.should.have.property("lastName");
             res.body.should.have.property("age");
             res.body.should.have.property("email");
+            done();
+          });
+      });
+    });
+  });
+  /*
+   * Test the /DELETE/:id route
+   */
+  describe("/DELETE/:id author", () => {
+    it("it should DELETE a author given the id", (done) => {
+      let author = new Author({
+        firstName: "Author",
+        lastName: "Leonard",
+        age: 30,
+        email: "teste@teste.com",
+      });
+      author.save((err, author) => {
+        chai
+          .request(server)
+          .delete("/authors/" + author.id)
+          .end((err, res) => {
+            res.should.have.status(204);
             done();
           });
       });

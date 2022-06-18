@@ -2,13 +2,15 @@ var express = require("express");
 var router = express.Router();
 var authors = require("../controllers/authors.controller");
 
-/* GET authors listing. */
+/* GetAll authors listing. */
 router.get("/", authors.getAll);
-/* POST author */
+/* Create author */
 router.post("/", authors.create);
-/* GET ID author */
+/* GetById author */
 router.get("/:id", authors.getById);
-/* PUT ID author */
+/* Update author */
 router.put("/:id", authors.update)
+/* Delete author */
+router.delete("/:id", authors.remove)
 
 module.exports = router;
