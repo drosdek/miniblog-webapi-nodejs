@@ -1,9 +1,8 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
+var authors = require("../controllers/authors.controller");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+/* GET authors listing. */
+router.get("/", authors.getAll);
 
 module.exports = router;
